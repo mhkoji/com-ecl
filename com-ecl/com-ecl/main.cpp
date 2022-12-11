@@ -25,6 +25,8 @@ int main(void) {
         Sleep(30);
       }
 
+      acc->Release();
+
     } else {
       std::cerr << "CreateInstance failed " << std::hex << (ULONG32)hr
                 << std::endl;
