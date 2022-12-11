@@ -16,7 +16,7 @@ Ref: https://ecl.common-lisp.dev/static/manual/Building-ECL.html
 
 - Run x64 Native Tools Command Prompt for VS 2022
 - Run: `cd C:\lisp\ecl`
-- Run `ecl --norc --eval "(require 'asdf)" --eval "(require 'cmp)" --load C:\lisp\com-ecl\lisp\com-ecl.asd`, and at the repl run `(asdf:make-build :com-ecl :type :static-library :monolithic t :move-here "./" :init-name "com_ecl_init")`
+- Run `ecl --norc --eval "(require 'asdf)" --eval "(require 'cmp)" --load <path-to-com-ecl-dir>\lisp\com-ecl.asd`, and at the repl run `(asdf:make-build :com-ecl :type :static-library :monolithic t :move-here "./" :init-name "com_ecl_init")`
 
 ### Build com-ecl-proxy, com-ecl-server and com-ecl
 
