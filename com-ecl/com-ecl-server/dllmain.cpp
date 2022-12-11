@@ -39,6 +39,8 @@ void Init() {
   }
 
   ecl_init_module(NULL, com_ecl_init);
+
+  g_initialized = true;
 }
 
 void Destroy() { cl_shutdown(); }
