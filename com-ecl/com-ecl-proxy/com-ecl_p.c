@@ -46,8 +46,8 @@
 
 #include "com-ecl_h.h"
 
-#define TYPE_FORMAT_STRING_SIZE   7                                 
-#define PROC_FORMAT_STRING_SIZE   77                                
+#define TYPE_FORMAT_STRING_SIZE   15                                
+#define PROC_FORMAT_STRING_SIZE   115                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   0            
@@ -101,7 +101,7 @@ static const com2Decl_MIDL_PROC_FORMAT_STRING com2Decl__MIDL_ProcFormatString =
         0,
         {
 
-	/* Procedure Inc */
+	/* Procedure PutNum */
 
 			0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
@@ -119,7 +119,7 @@ static const com2Decl_MIDL_PROC_FORMAT_STRING com2Decl__MIDL_ProcFormatString =
 /* 22 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 24 */	NdrFcShort( 0x0 ),	/* 0 */
 
-	/* Parameter val */
+	/* Parameter x */
 
 /* 26 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
 /* 28 */	NdrFcShort( 0x8 ),	/* X64 Stack size/offset = 8 */
@@ -133,7 +133,7 @@ static const com2Decl_MIDL_PROC_FORMAT_STRING com2Decl__MIDL_ProcFormatString =
 /* 36 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure Value */
+	/* Procedure PutStr */
 
 /* 38 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
@@ -141,8 +141,8 @@ static const com2Decl_MIDL_PROC_FORMAT_STRING com2Decl__MIDL_ProcFormatString =
 /* 44 */	NdrFcShort( 0x4 ),	/* 4 */
 /* 46 */	NdrFcShort( 0x18 ),	/* X64 Stack size/offset = 24 */
 /* 48 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 50 */	NdrFcShort( 0x2c ),	/* 44 */
-/* 52 */	0x44,		/* Oi2 Flags:  has return, has ext, */
+/* 50 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 52 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
 			0x2,		/* 2 */
 /* 54 */	0xa,		/* 10 */
 			0x1,		/* Ext Flags:  new corr desc, */
@@ -151,18 +151,48 @@ static const com2Decl_MIDL_PROC_FORMAT_STRING com2Decl__MIDL_ProcFormatString =
 /* 60 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 62 */	NdrFcShort( 0x0 ),	/* 0 */
 
-	/* Parameter val */
+	/* Parameter x */
 
-/* 64 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
+/* 64 */	NdrFcShort( 0x10b ),	/* Flags:  must size, must free, in, simple ref, */
 /* 66 */	NdrFcShort( 0x8 ),	/* X64 Stack size/offset = 8 */
-/* 68 */	0xb,		/* FC_HYPER */
-			0x0,		/* 0 */
+/* 68 */	NdrFcShort( 0x4 ),	/* Type Offset=4 */
 
 	/* Return value */
 
 /* 70 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
 /* 72 */	NdrFcShort( 0x10 ),	/* X64 Stack size/offset = 16 */
 /* 74 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure ToString */
+
+/* 76 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 78 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 82 */	NdrFcShort( 0x5 ),	/* 5 */
+/* 84 */	NdrFcShort( 0x18 ),	/* X64 Stack size/offset = 24 */
+/* 86 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 88 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 90 */	0x45,		/* Oi2 Flags:  srv must size, has return, has ext, */
+			0x2,		/* 2 */
+/* 92 */	0xa,		/* 10 */
+			0x1,		/* Ext Flags:  new corr desc, */
+/* 94 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 96 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 98 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 100 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter str */
+
+/* 102 */	NdrFcShort( 0x2013 ),	/* Flags:  must size, must free, out, srv alloc size=8 */
+/* 104 */	NdrFcShort( 0x8 ),	/* X64 Stack size/offset = 8 */
+/* 106 */	NdrFcShort( 0x6 ),	/* Type Offset=6 */
+
+	/* Return value */
+
+/* 108 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 110 */	NdrFcShort( 0x10 ),	/* X64 Stack size/offset = 16 */
+/* 112 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0
@@ -175,8 +205,17 @@ static const com2Decl_MIDL_TYPE_FORMAT_STRING com2Decl__MIDL_TypeFormatString =
         {
 			NdrFcShort( 0x0 ),	/* 0 */
 /*  2 */	
-			0x11, 0xc,	/* FC_RP [alloced_on_stack] [simple_pointer] */
-/*  4 */	0xb,		/* FC_HYPER */
+			0x11, 0x8,	/* FC_RP [simple_pointer] */
+/*  4 */	
+			0x22,		/* FC_C_CSTRING */
+			0x5c,		/* FC_PAD */
+/*  6 */	
+			0x11, 0x14,	/* FC_RP [alloced_on_stack] [pointer_deref] */
+/*  8 */	NdrFcShort( 0x2 ),	/* Offset= 2 (10) */
+/* 10 */	
+			0x13, 0x8,	/* FC_OP [simple_pointer] */
+/* 12 */	
+			0x25,		/* FC_C_WSTRING */
 			0x5c,		/* FC_PAD */
 
 			0x0
@@ -195,7 +234,8 @@ static const com2Decl_MIDL_TYPE_FORMAT_STRING com2Decl__MIDL_TypeFormatString =
 static const unsigned short IAcc_FormatStringOffsetTable[] =
     {
     0,
-    38
+    38,
+    76
     };
 
 
@@ -236,11 +276,36 @@ static const unsigned short IAcc_FormatStringOffsetTable[] =
 
 typedef 
 NDR64_FORMAT_CHAR
-__midl_frag8_t;
-extern const __midl_frag8_t __midl_frag8;
+__midl_frag13_t;
+extern const __midl_frag13_t __midl_frag13;
 
 typedef 
-NDR64_FORMAT_CHAR
+struct _NDR64_CONFORMANT_STRING_FORMAT
+__midl_frag12_t;
+extern const __midl_frag12_t __midl_frag12;
+
+typedef 
+struct _NDR64_POINTER_FORMAT
+__midl_frag11_t;
+extern const __midl_frag11_t __midl_frag11;
+
+typedef 
+struct _NDR64_POINTER_FORMAT
+__midl_frag10_t;
+extern const __midl_frag10_t __midl_frag10;
+
+typedef 
+struct 
+{
+    struct _NDR64_PROC_FORMAT frag1;
+    struct _NDR64_PARAM_FORMAT frag2;
+    struct _NDR64_PARAM_FORMAT frag3;
+}
+__midl_frag9_t;
+extern const __midl_frag9_t __midl_frag9;
+
+typedef 
+struct _NDR64_CONFORMANT_STRING_FORMAT
 __midl_frag7_t;
 extern const __midl_frag7_t __midl_frag7;
 
@@ -260,6 +325,11 @@ __midl_frag5_t;
 extern const __midl_frag5_t __midl_frag5;
 
 typedef 
+NDR64_FORMAT_CHAR
+__midl_frag3_t;
+extern const __midl_frag3_t __midl_frag3;
+
+typedef 
 struct 
 {
     struct _NDR64_PROC_FORMAT frag1;
@@ -274,62 +344,89 @@ NDR64_FORMAT_UINT32
 __midl_frag1_t;
 extern const __midl_frag1_t __midl_frag1;
 
-static const __midl_frag8_t __midl_frag8 =
+static const __midl_frag13_t __midl_frag13 =
 0x5    /* FC64_INT32 */;
 
-static const __midl_frag7_t __midl_frag7 =
-0x7    /* FC64_INT64 */;
-
-static const __midl_frag6_t __midl_frag6 =
+static const __midl_frag12_t __midl_frag12 =
 { 
-/* *LONGLONG */
-    0x20,    /* FC64_RP */
-    (NDR64_UINT8) 12 /* 0xc */,
-    (NDR64_UINT16) 0 /* 0x0 */,
-    &__midl_frag7
+/* *WCHAR */
+    { 
+    /* *WCHAR */
+        0x64,    /* FC64_CONF_WCHAR_STRING */
+        { 
+        /* *WCHAR */
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        },
+        (NDR64_UINT16) 2 /* 0x2 */
+    }
 };
 
-static const __midl_frag5_t __midl_frag5 =
+static const __midl_frag11_t __midl_frag11 =
 { 
-/* Value */
+/* *WCHAR */
+    0x22,    /* FC64_OP */
+    (NDR64_UINT8) 0 /* 0x0 */,
+    (NDR64_UINT16) 0 /* 0x0 */,
+    &__midl_frag12
+};
+
+static const __midl_frag10_t __midl_frag10 =
+{ 
+/* **WCHAR */
+    0x20,    /* FC64_RP */
+    (NDR64_UINT8) 20 /* 0x14 */,
+    (NDR64_UINT16) 0 /* 0x0 */,
+    &__midl_frag11
+};
+
+static const __midl_frag9_t __midl_frag9 =
+{ 
+/* ToString */
     { 
-    /* Value */      /* procedure Value */
-        (NDR64_UINT32) 524611 /* 0x80143 */,    /* auto handle */ /* IsIntrepreted, [object], HasReturn */
+    /* ToString */      /* procedure ToString */
+        (NDR64_UINT32) 655683 /* 0xa0143 */,    /* auto handle */ /* IsIntrepreted, [object], ServerMustSize, HasReturn */
         (NDR64_UINT32) 24 /* 0x18 */ ,  /* Stack size */
         (NDR64_UINT32) 0 /* 0x0 */,
-        (NDR64_UINT32) 48 /* 0x30 */,
+        (NDR64_UINT32) 8 /* 0x8 */,
         (NDR64_UINT16) 0 /* 0x0 */,
         (NDR64_UINT16) 0 /* 0x0 */,
         (NDR64_UINT16) 2 /* 0x2 */,
         (NDR64_UINT16) 0 /* 0x0 */
     },
     { 
-    /* val */      /* parameter val */
-        &__midl_frag7,
+    /* str */      /* parameter str */
+        &__midl_frag10,
         { 
-        /* val */
-            0,
-            0,
+        /* str */
+            1,
+            1,
             0,
             0,
             1,
             0,
-            1,
             0,
-            1,
+            0,
+            0,
             0,
             0,
             0,
             0,
             (NDR64_UINT16) 0 /* 0x0 */,
             1
-        },    /* [out], Basetype, SimpleRef, UseCache */
+        },    /* MustSize, MustFree, [out], UseCache */
         (NDR64_UINT16) 0 /* 0x0 */,
         8 /* 0x8 */,   /* Stack offset */
     },
     { 
     /* HRESULT */      /* parameter HRESULT */
-        &__midl_frag8,
+        &__midl_frag13,
         { 
         /* HRESULT */
             0,
@@ -353,11 +450,108 @@ static const __midl_frag5_t __midl_frag5 =
     }
 };
 
+static const __midl_frag7_t __midl_frag7 =
+{ 
+/* *CHAR */
+    { 
+    /* *CHAR */
+        0x63,    /* FC64_CONF_CHAR_STRING */
+        { 
+        /* *CHAR */
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        },
+        (NDR64_UINT16) 1 /* 0x1 */
+    }
+};
+
+static const __midl_frag6_t __midl_frag6 =
+{ 
+/* *CHAR */
+    0x20,    /* FC64_RP */
+    (NDR64_UINT8) 0 /* 0x0 */,
+    (NDR64_UINT16) 0 /* 0x0 */,
+    &__midl_frag7
+};
+
+static const __midl_frag5_t __midl_frag5 =
+{ 
+/* PutStr */
+    { 
+    /* PutStr */      /* procedure PutStr */
+        (NDR64_UINT32) 786755 /* 0xc0143 */,    /* auto handle */ /* IsIntrepreted, [object], ClientMustSize, HasReturn */
+        (NDR64_UINT32) 24 /* 0x18 */ ,  /* Stack size */
+        (NDR64_UINT32) 0 /* 0x0 */,
+        (NDR64_UINT32) 8 /* 0x8 */,
+        (NDR64_UINT16) 0 /* 0x0 */,
+        (NDR64_UINT16) 0 /* 0x0 */,
+        (NDR64_UINT16) 2 /* 0x2 */,
+        (NDR64_UINT16) 0 /* 0x0 */
+    },
+    { 
+    /* x */      /* parameter x */
+        &__midl_frag7,
+        { 
+        /* x */
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            (NDR64_UINT16) 0 /* 0x0 */,
+            0
+        },    /* MustSize, MustFree, [in], SimpleRef */
+        (NDR64_UINT16) 0 /* 0x0 */,
+        8 /* 0x8 */,   /* Stack offset */
+    },
+    { 
+    /* HRESULT */      /* parameter HRESULT */
+        &__midl_frag13,
+        { 
+        /* HRESULT */
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            (NDR64_UINT16) 0 /* 0x0 */,
+            0
+        },    /* [out], IsReturn, Basetype, ByValue */
+        (NDR64_UINT16) 0 /* 0x0 */,
+        16 /* 0x10 */,   /* Stack offset */
+    }
+};
+
+static const __midl_frag3_t __midl_frag3 =
+0x7    /* FC64_INT64 */;
+
 static const __midl_frag2_t __midl_frag2 =
 { 
-/* Inc */
+/* PutNum */
     { 
-    /* Inc */      /* procedure Inc */
+    /* PutNum */      /* procedure PutNum */
         (NDR64_UINT32) 524611 /* 0x80143 */,    /* auto handle */ /* IsIntrepreted, [object], HasReturn */
         (NDR64_UINT32) 24 /* 0x18 */ ,  /* Stack size */
         (NDR64_UINT32) 16 /* 0x10 */,
@@ -368,10 +562,10 @@ static const __midl_frag2_t __midl_frag2 =
         (NDR64_UINT16) 0 /* 0x0 */
     },
     { 
-    /* val */      /* parameter val */
-        &__midl_frag7,
+    /* x */      /* parameter x */
+        &__midl_frag3,
         { 
-        /* val */
+        /* x */
             0,
             0,
             0,
@@ -393,7 +587,7 @@ static const __midl_frag2_t __midl_frag2 =
     },
     { 
     /* HRESULT */      /* parameter HRESULT */
-        &__midl_frag8,
+        &__midl_frag13,
         { 
         /* HRESULT */
             0,
@@ -436,7 +630,8 @@ static const __midl_frag1_t __midl_frag1 =
 static const FormatInfoRef IAcc_Ndr64ProcTable[] =
     {
     &__midl_frag2,
-    &__midl_frag5
+    &__midl_frag5,
+    &__midl_frag9
     };
 
 
@@ -487,22 +682,23 @@ static const MIDL_SERVER_INFO IAcc_ServerInfo =
     2,
     (MIDL_SYNTAX_INFO*)IAcc_SyntaxInfo
     };
-CINTERFACE_PROXY_VTABLE(5) _IAccProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(6) _IAccProxyVtbl = 
 {
     &IAcc_ProxyInfo,
     &IID_IAcc,
     IUnknown_QueryInterface_Proxy,
     IUnknown_AddRef_Proxy,
     IUnknown_Release_Proxy ,
-    (void *) (INT_PTR) -1 /* IAcc::Inc */ ,
-    (void *) (INT_PTR) -1 /* IAcc::Value */
+    (void *) (INT_PTR) -1 /* IAcc::PutNum */ ,
+    (void *) (INT_PTR) -1 /* IAcc::PutStr */ ,
+    (void *) (INT_PTR) -1 /* IAcc::ToString */
 };
 
 const CInterfaceStubVtbl _IAccStubVtbl =
 {
     &IID_IAcc,
     &IAcc_ServerInfo,
-    5,
+    6,
     0, /* pure interpreted */
     CStdStubBuffer_METHODS
 };

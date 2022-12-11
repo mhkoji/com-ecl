@@ -1,6 +1,7 @@
 ﻿#include "../com-ecl-proxy/com-ecl_h.h"
 #include "pch.h"
 #include <OleCtl.h>
+#include <shlwapi.h>
 #include <string>
 
 #include <ecl.h>
@@ -45,19 +46,31 @@ void Init() {
 
 void Destroy() { cl_shutdown(); }
 
+void ToCString(cl_object obj, std::string *str) {
+  struct ecl_string ecl_str = obj->string;
+  for (int i = 0; i < ecl_str.fillp; i += 1) {
+    *str += (decltype(ecl_str.elttype))ecl_str.self[i];
+  }
+}
+
 class Acc {
 public:
   Acc() { impl_ = cl_eval(c_string_to_object("(com-ecl:make-acc)")); }
 
-  void Inc(long long value) {
-    cl_funcall(3, cl_eval(c_string_to_object("'com-ecl:acc-inc")), impl_,
+  void PutNum(long long value) {
+    cl_funcall(3, cl_eval(c_string_to_object("'com-ecl:acc-put")), impl_,
                ecl_make_fixnum(value));
   }
 
-  long long Value() {
-    cl_object val =
-        cl_funcall(2, cl_eval(c_string_to_object("'com-ecl:acc-value")), impl_);
-    return ecl_to_fixnum(val);
+  void PutStr(const std::string &value) {
+    cl_funcall(3, cl_eval(c_string_to_object("'com-ecl:acc-put")), impl_,
+               ecl_make_constant_base_string(value.c_str(), -1));
+  }
+
+  void ToString(std::string *out) {
+    cl_object str = cl_funcall(
+        2, cl_eval(c_string_to_object("'com-ecl:acc-to-string")), impl_);
+    ToCString(str, out);
   }
 
 private:
@@ -71,6 +84,15 @@ public:
   Acc() : count_(1) {
     ecl::Init();
     acc_ = new ecl::Acc();
+
+    // Show console for debugging
+    if (!g_console_initialized) {
+      FILE *fp;
+      AllocConsole();
+      freopen_s(&fp, "CONOUT$", "w", stdout);
+      freopen_s(&fp, "CONOUT$", "w", stderr);
+      g_console_initialized = true;
+    }
   }
 
   ~Acc() { delete acc_; }
@@ -101,30 +123,33 @@ public:
     }
     return count;
   }
-  virtual HRESULT __stdcall Inc(LONGLONG val) override {
-    // Show console for debugging
-    if (!g_console_initialized) {
-      FILE *fp;
-      AllocConsole();
-      freopen_s(&fp, "CONOUT$", "w", stdout);
-      freopen_s(&fp, "CONOUT$", "w", stderr);
-      g_console_initialized = true;
-    }
+  virtual HRESULT __stdcall PutNum(LONGLONG x) override {
     fprintf(stdout, "%s\n",
-            (std::to_string(GetCurrentThreadId()) + " " +
-             std::to_string(++g_inc_count))
+            (std::to_string(GetCurrentThreadId()) + ", " +
+             std::to_string(++g_inc_count) + ", num=" + std::to_string(x))
                 .c_str());
-
-    acc_->Inc(val);
-
+    acc_->PutNum(x);
     return S_OK;
   }
-  virtual HRESULT __stdcall Value(LONGLONG *val) override {
-    if (val == nullptr) {
+  virtual HRESULT __stdcall PutStr(LPCSTR x) override {
+    fprintf(stdout, "%s\n",
+            (std::to_string(GetCurrentThreadId()) + ", " +
+             std::to_string(++g_inc_count) + ", str=" + x)
+                .c_str());
+    acc_->PutStr(x);
+    return S_OK;
+  }
+  virtual HRESULT __stdcall ToString(LPWSTR *str) override {
+    if (str == nullptr) {
       return E_INVALIDARG;
     }
-    *val = acc_->Value();
-    return S_OK;
+    std::string out;
+    acc_->ToString(&out);
+    fprintf(stdout, "%s\n",
+            (std::to_string(GetCurrentThreadId()) + ", " +
+             std::to_string(++g_inc_count) + ", out=" + out)
+                .c_str());
+    return SHStrDupA(out.c_str(), str);
   }
 
 private:

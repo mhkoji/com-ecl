@@ -1,10 +1,11 @@
 #include "../com-ecl-proxy/com-ecl_h.h"
 #include <iostream>
+#include <string>
 
 int main(void) {
   HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
   if (FAILED(hr)) {
-    std::cerr << "CoInitialize failed";
+    std::wcerr << "CoInitialize failed";
     return 0;
   }
 
@@ -17,24 +18,32 @@ int main(void) {
     if (SUCCEEDED(hr)) {
 
       for (LONGLONG i = 0; i <= 20; i++) {
-        acc->Inc(i);
-        LONGLONG val;
-        hr = acc->Value(&val);
-        std::cerr << std::dec << "i= " << i << ", val=" << val
+        if ((i & 1) == 0) {
+          acc->PutNum(i);
+        } else {
+          acc->PutStr(std::to_string(i).c_str());
+        }
+
+        LPWSTR val;
+        hr = acc->ToString(&val);
+        std::wcerr << std::dec << "i= " << i << ", val=" << val
                   << ", hr=" << std::hex << (ULONG32)hr << std::endl;
+        if (SUCCEEDED(hr)) {
+          CoTaskMemFree(val);
+        }
         Sleep(30);
       }
 
       acc->Release();
 
     } else {
-      std::cerr << "CreateInstance failed " << std::hex << (ULONG32)hr
+      std::wcerr << "CreateInstance failed " << std::hex << (ULONG32)hr
                 << std::endl;
     }
 
     factory->Release();
   } else {
-    std::cerr << "CoGetClassObject failed " << std::hex << (ULONG32)hr
+    std::wcerr << "CoGetClassObject failed " << std::hex << (ULONG32)hr
               << std::endl;
   }
 

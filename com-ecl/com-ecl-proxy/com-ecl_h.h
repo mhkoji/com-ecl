@@ -87,11 +87,14 @@ EXTERN_C const IID IID_IAcc;
     IAcc : public IUnknown
     {
     public:
-        virtual HRESULT STDMETHODCALLTYPE Inc( 
-            LONGLONG val) = 0;
+        virtual HRESULT STDMETHODCALLTYPE PutNum( 
+            LONGLONG x) = 0;
         
-        virtual HRESULT STDMETHODCALLTYPE Value( 
-            /* [out] */ LONGLONG *val) = 0;
+        virtual HRESULT STDMETHODCALLTYPE PutStr( 
+            LPCSTR x) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE ToString( 
+            /* [out] */ LPWSTR *str) = 0;
         
     };
     
@@ -114,13 +117,17 @@ EXTERN_C const IID IID_IAcc;
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IAcc * This);
         
-        HRESULT ( STDMETHODCALLTYPE *Inc )( 
+        HRESULT ( STDMETHODCALLTYPE *PutNum )( 
             IAcc * This,
-            LONGLONG val);
+            LONGLONG x);
         
-        HRESULT ( STDMETHODCALLTYPE *Value )( 
+        HRESULT ( STDMETHODCALLTYPE *PutStr )( 
             IAcc * This,
-            /* [out] */ LONGLONG *val);
+            LPCSTR x);
+        
+        HRESULT ( STDMETHODCALLTYPE *ToString )( 
+            IAcc * This,
+            /* [out] */ LPWSTR *str);
         
         END_INTERFACE
     } IAccVtbl;
@@ -145,11 +152,14 @@ EXTERN_C const IID IID_IAcc;
     ( (This)->lpVtbl -> Release(This) ) 
 
 
-#define IAcc_Inc(This,val)	\
-    ( (This)->lpVtbl -> Inc(This,val) ) 
+#define IAcc_PutNum(This,x)	\
+    ( (This)->lpVtbl -> PutNum(This,x) ) 
 
-#define IAcc_Value(This,val)	\
-    ( (This)->lpVtbl -> Value(This,val) ) 
+#define IAcc_PutStr(This,x)	\
+    ( (This)->lpVtbl -> PutStr(This,x) ) 
+
+#define IAcc_ToString(This,str)	\
+    ( (This)->lpVtbl -> ToString(This,str) ) 
 
 #endif /* COBJMACROS */
 

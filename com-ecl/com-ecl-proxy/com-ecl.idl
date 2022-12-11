@@ -8,8 +8,9 @@ import "ocidl.idl";
     version(1.0)
 ]
 interface IAcc : IUnknown {
-    HRESULT Inc(LONGLONG val);
-    HRESULT Value([out] LONGLONG *val);
+    HRESULT PutNum(LONGLONG x);
+    HRESULT PutStr(LPCSTR x);
+    HRESULT ToString([out] LPWSTR *str);
 }
 
 
