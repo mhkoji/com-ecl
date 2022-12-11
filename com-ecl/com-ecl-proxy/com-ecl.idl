@@ -1,0 +1,33 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+// clang-format off
+
+[
+    uuid(e0959149-f389-4b42-be22-6278a9ff70af),
+    version(1.0)
+]
+interface IAcc : IUnknown {
+    HRESULT Inc(LONGLONG val);
+    HRESULT Value([out] LONGLONG *val);
+}
+
+
+[
+    uuid(e7978274-536d-408b-bb33-e4fd09bc102c),
+    version(1.0)
+]
+library ComEclLibrary
+{
+    [
+        uuid(4e6665df-5646-4815-b0e9-81d6af1c51eb),
+        version(1.0)
+    ]
+    coclass ComEcl
+    {
+        [default]
+        interface IAcc;
+    };
+}
+
+// clang-format on
