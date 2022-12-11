@@ -1,11 +1,16 @@
 # com-ecl
 An example of COM out-of-process server with ECL
 
-## Prerequisite
+For simplicity, we assume that ecl and the generated dll files are installed to `C:/lisp/ecl`
 
-- ecl is installed at `C:/lisp/ecl`
+## Build
 
-## Build and setup
+### Install ecl to `C:/lisp/ecl`
+
+Ref: https://ecl.common-lisp.dev/static/manual/Building-ECL.html
+
+- Run: `nmake ECL_CMP=1 ECL_ASDF=1 ECL_WIN64=1 GMP_TYPE=AMD64`
+- Run: `nmake install prefix=C:\lisp\ecl`
 
 ### Build com-ecl--all-systems.lib
 
