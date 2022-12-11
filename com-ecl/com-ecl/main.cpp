@@ -12,7 +12,6 @@ int main(void) {
   hr = CoGetClassObject(CLSID_ComEcl, CLSCTX_LOCAL_SERVER, nullptr,
                         IID_IClassFactory, (LPVOID *)&factory);
   if (SUCCEEDED(hr)) {
-    std::cerr << "CoGetClassObject" << std::endl;
     IAcc *acc;
     hr = factory->CreateInstance(nullptr, IID_IAcc, (void **)&acc);
     if (SUCCEEDED(hr)) {
